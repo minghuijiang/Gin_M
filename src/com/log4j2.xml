@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<properties>
+		<property name="logfile">%d{yyyy-MM-dd}</property>
+		<property name="pattern">%d{ABSOLUTE} | %2p | %10.10t | %-20.20C:%-5.5L | %throwable{3}%msg%n</property>
+<!-- 
+It will look like that:
+2013-04-03 07:37:51.993 | W | main       | lnetgateway.Server:56    | My app is logging stuff
+-->
+	</properties>
+	<appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}"/>
+		</Console>
+		<File name="File" fileName="log/app.log">
+                    <PatternLayout pattern="${pattern}"/>
+                </File>
+	</appenders>
+	<loggers>
+		<root level="debug"> <!-- We log everything -->
+			<appender-ref ref="Console"/> <!-- To console -->
+			<appender-ref ref="File"/> <!-- And to a rotated file -->
+		</root>
+	</loggers>
+</configuration>
